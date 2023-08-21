@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:muslim_fortress/view/home/home.dart';
@@ -15,6 +13,7 @@ class MuslimFortress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      title: "Muslim's Fortress",
       initialBinding: MyBindings(),
       home: const Home(),
     );
