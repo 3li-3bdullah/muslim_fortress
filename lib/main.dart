@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:muslim_fortress/view/home/home.dart';
 import '../shared/my_bindings/my_bindings.dart';
 
-void main(){
-  runApp( const MuslimFortress());
+void main() {
+  runApp(const MuslimFortress());
 }
 
 class MuslimFortress extends StatelessWidget {
@@ -14,6 +14,8 @@ class MuslimFortress extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: "Muslim's Fortress",
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(useMaterial3: true),
       initialBinding: MyBindings(),
       home: const Home(),
     );
