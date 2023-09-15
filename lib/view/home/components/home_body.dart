@@ -4,6 +4,8 @@ import 'package:muslim_fortress/controller/home_controller.dart';
 import 'package:muslim_fortress/shared/components/custom_text.dart';
 import 'package:muslim_fortress/view/home/components/home_body_row.dart';
 
+import '../reading_page.dart';
+
 class HomeBody extends GetWidget<HomeController> {
   const HomeBody({super.key});
 
@@ -24,47 +26,51 @@ class HomeBody extends GetWidget<HomeController> {
               height: 10,
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: controller.adhkarList.length,
-                itemBuilder: (_, index) {
-                  return Container(
-                    padding: const EdgeInsets.all(10),
-                    margin: const EdgeInsets.symmetric(vertical: 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.white,
-                    ),
-                    child: InkWell(
-                      // onTap: () => Get.to(() => ReadingPage(text: controller.adhkarList[index]['text'].toString())),
-                      child: Row(
-                        children: [
-                          CustomText(
-                              text: controller.adhkarList[index]['category'],
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold),
-                          const Spacer(),
-                          Container(
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border(
-                                bottom: BorderSide(color: Colors.brown),
-                                top: BorderSide(color: Colors.brown),
-                                left: BorderSide(color: Colors.brown),
-                                right: BorderSide(color: Colors.brown),
-                              ),
-                            ),
-                            child: IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.favorite,
-                                  color: Colors.brown,
-                                )),
-                          ),
-                        ],
+              child: GetBuilder<HomeController>(
+                builder: (controller) => ListView.builder(
+                  itemCount: controller.adhkarList.length,
+                  itemBuilder: (_, index) {
+                    return Container(
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.white,
                       ),
-                    ),
-                  );
-                },
+                      child: InkWell(
+                        onTap: () => Get.to(() => ReadingPage(
+                            text: controller.adhkarList[index]['array'][0]['text']
+                                .toString())),
+                        child: Row(
+                          children: [
+                            CustomText(
+                                text: controller.adhkarList[index]['category'],
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                            const Spacer(),
+                            Container(
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border(
+                                  bottom: BorderSide(color: Colors.brown),
+                                  top: BorderSide(color: Colors.brown),
+                                  left: BorderSide(color: Colors.brown),
+                                  right: BorderSide(color: Colors.brown),
+                                ),
+                              ),
+                              child: IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    Icons.favorite,
+                                    color: Colors.brown,
+                                  )),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           ],
