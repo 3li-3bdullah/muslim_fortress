@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:muslim_fortress/view/home/components/custom_home_icon.dart';
+import 'package:muslim_fortress/controller/home_controller.dart';
+import 'package:muslim_fortress/shared/components/custom_text.dart';
+import 'package:muslim_fortress/view/home/components/home_body_row.dart';
 
-class HomeBody extends StatelessWidget {
+class HomeBody extends GetWidget<HomeController> {
   const HomeBody({super.key});
 
   @override
@@ -17,43 +19,52 @@ class HomeBody extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(width: Get.width),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Container(
-                margin: const EdgeInsets.symmetric(vertical: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
-                    CustomHomeIcon(
-                      icon: Icons.sunny,
-                      text: "أذكار الصباح",
+            const HomeBodyRow(),
+            const SizedBox(
+              height: 10,
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: controller.adhkarList.length,
+                itemBuilder: (_, index) {
+                  return Container(
+                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.white,
                     ),
-                    SizedBox(
-                      width: 20,
+                    child: InkWell(
+                      // onTap: () => Get.to(() => ReadingPage(text: controller.adhkarList[index]['text'].toString())),
+                      child: Row(
+                        children: [
+                          CustomText(
+                              text: controller.adhkarList[index]['category'],
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                          const Spacer(),
+                          Container(
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border(
+                                bottom: BorderSide(color: Colors.brown),
+                                top: BorderSide(color: Colors.brown),
+                                left: BorderSide(color: Colors.brown),
+                                right: BorderSide(color: Colors.brown),
+                              ),
+                            ),
+                            child: IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.favorite,
+                                  color: Colors.brown,
+                                )),
+                          ),
+                        ],
+                      ),
                     ),
-                    CustomHomeIcon(
-                      icon: Icons.dark_mode_outlined,
-                      text: "أذكار المساء",
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    CustomHomeIcon(
-                      icon: Icons.sunny,
-                      text: "أدعية مأثورة",
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    CustomHomeIcon(
-                      icon: Icons.manage_search,
-                      text: "سيرة الرسول",
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                  ],
-                ),
+                  );
+                },
               ),
             ),
           ],
