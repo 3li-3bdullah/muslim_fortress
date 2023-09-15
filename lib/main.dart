@@ -15,7 +15,9 @@ class MuslimFortress extends StatelessWidget {
     return GetMaterialApp(
       title: "Muslim's Fortress",
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true),
+      theme: ThemeData(
+        useMaterial3: true,
+      ),
       initialBinding: MyBindings(),
       home: const Home(),
     );
