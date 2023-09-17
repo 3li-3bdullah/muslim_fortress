@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class HomeController extends GetxController { 
+class HomeController extends GetxController {
   List<dynamic> adhkarList = [];
   GlobalKey scaffoldKey = GlobalKey();
 
@@ -16,10 +16,9 @@ class HomeController extends GetxController {
   }
 
   getJsonData() async {
-    await Future.delayed(const Duration(seconds: 3));
-
-    final azkarData = await rootBundle.loadString("assets/json/adhkar.json");
-    adhkarList = jsonDecode(azkarData);
+    adhkarList = await rootBundle
+        .loadString("assets/json/adhkar.json")
+        .then((value) => jsonDecode(value));
     update();
   }
 
