@@ -15,13 +15,24 @@ class ReadingPage extends StatelessWidget {
         width: Get.width,
         color: kbackgroundColor,
         alignment: Alignment.center,
-        child: ListView.builder(
-            itemCount: texts.length,
-            itemBuilder: (context, index) => CustomText(
-                  text: texts[index]['text'],
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                )),
+        child: Directionality(
+          textDirection: TextDirection.rtl, 
+          child: ListView.builder(
+              itemCount: texts.length,
+              itemBuilder: (context, index) => Container(
+                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.white,
+                    ),
+                    child: CustomText(
+                      text: texts[index]['text'],
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  )),
+        ),
       ),
     );
   }
