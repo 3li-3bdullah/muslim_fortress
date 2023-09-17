@@ -39,8 +39,7 @@ class HomeBody extends GetWidget<HomeController> {
                       ),
                       child: InkWell(
                         onTap: () => Get.to(() => ReadingPage(
-                            text: controller.adhkarList[index]['array'][0]['text']
-                                .toString())),
+                            texts: controller.adhkarList[index]['array'])),
                         child: Row(
                           children: [
                             CustomText(
